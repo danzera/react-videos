@@ -28,7 +28,11 @@ class App extends React.Component {
 			}
 		});
 
-		this.setState({ videos: response.data.items });
+		// default the selectedVideo to the first item in the list of search results
+		this.setState({
+			selectedVideo: response.data.items[0],
+			videos: response.data.items
+		});
 	}
 
 	onVideoSelect = (video) => {
@@ -39,8 +43,16 @@ class App extends React.Component {
 		return (
 			<div className="app ui container">
 				<SearchBar onSubmit={this.onSearchSubmit} />
-				<VideoDetail video={this.state.selectedVideo} />
-				<VideoList onVideoSelect={this.onVideoSelect} videos={this.state.videos} />
+				<div className="ui grid">
+					<div className="ui row">
+						<div className="eleven wide column">
+							<VideoDetail video={this.state.selectedVideo} />
+						</div>
+						<div className="five wide column">
+							<VideoList onVideoSelect={this.onVideoSelect} videos={this.state.videos} />
+						</div>
+					</div>
+				</div>
 			</div>
 		);
 	}
