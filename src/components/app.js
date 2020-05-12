@@ -11,8 +11,10 @@ import '../scss/app.scss';
 // App needs to be a class based component so it can hold the state of our app
 class App extends React.Component {
 	state = {
+		selectedVideo: null,
 		videos: []
 	}
+
 	// search function to be passed down to our SearchBar component
 	onSearchSubmit = async searchTerm => {
 		const response = await youTube.get('/search', {
@@ -28,11 +30,15 @@ class App extends React.Component {
 		this.setState({ videos: response.data.items });
 	}
 
+	onVideoSelect = (video) => {
+		console.log(video);
+	}
+
 	render() {
 		return (
 			<div className="app ui container">
 				<SearchBar onSubmit={this.onSearchSubmit} />
-				<VideoList videos={this.state.videos} />
+				<VideoList onVideoSelect={this.onVideoSelect} videos={this.state.videos} />
 			</div>
 		);
 	}
