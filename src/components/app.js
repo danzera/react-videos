@@ -16,6 +16,11 @@ class App extends React.Component {
 		videos: []
 	}
 
+	// use componentDidMount lifecycle method to submit a default search to the youtube api
+	componentDidMount() {
+		this.onSearchSubmit('');
+	}
+
 	// search function to be passed down to our SearchBar component
 	onSearchSubmit = async searchTerm => {
 		const response = await youTube.get('/search', {
