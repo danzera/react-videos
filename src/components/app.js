@@ -4,6 +4,7 @@ import React from 'react';
 import youTube from '../api/youtube';
 // CUSTOM COMPONENTS
 import SearchBar from './search-bar';
+import VideoDetail from './video-detail';
 import VideoList from './video-list';
 // STYLESHEETS
 import '../scss/app.scss';
@@ -31,13 +32,14 @@ class App extends React.Component {
 	}
 
 	onVideoSelect = (video) => {
-		console.log(video);
+		this.setState({ selectedVideo: video });
 	}
 
 	render() {
 		return (
 			<div className="app ui container">
 				<SearchBar onSubmit={this.onSearchSubmit} />
+				<VideoDetail video={this.state.selectedVideo} />
 				<VideoList onVideoSelect={this.onVideoSelect} videos={this.state.videos} />
 			</div>
 		);

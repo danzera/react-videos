@@ -3,8 +3,6 @@ import VideoItem from './video-item';
 
 // destructure props so we can just reference 'videos' directly
 const VideoList = ({ onVideoSelect, videos }) => {
-	console.log(videos)
-	console.log(onVideoSelect)
 	const videoItemsList = videos.map(video => {
 		return <VideoItem
 						key={video.id.videoId}
